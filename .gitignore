@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/UserManagementApp/.vs/*
+/UserManagementApp/UserManagement.**/bin/*
+/UserManagementApp/UserManagement.**/obj/*
+/UserManagementApp/UserManagement/obj/*
+/UserManagementApp/UserManagement.API/obj/*
+
