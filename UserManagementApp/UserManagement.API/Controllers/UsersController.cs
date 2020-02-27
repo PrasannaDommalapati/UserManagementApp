@@ -27,7 +27,7 @@ namespace UserManagement.API.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<List<UserModel>> GetUsers()
+        public async Task<IEnumerable<UserModel>> GetUsers()
         {
             return await Story
                 .UsersList()
@@ -48,11 +48,15 @@ namespace UserManagement.API.Controllers
 
         // GET: api/Users/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<UserModel> Get(int id)
         {
-            return "value";
+            return await Story
+                .GetUser(id)
+                .ConfigureAwait(false);
         }
-
 
         // PUT: api/Users/5
         [HttpPut("{id}")]

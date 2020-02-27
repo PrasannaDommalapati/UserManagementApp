@@ -18,10 +18,17 @@ namespace UserManagement
             ReportingWork = reportingWork.ValidateNotNull();
         }
 
-        public async Task<List<UserModel>> UsersList()
+        public async Task<IEnumerable<UserModel>> UsersList()
         {
             return await ReportingWork
                 .UsersList()
+                .ConfigureAwait(false);
+        }
+
+        public async Task<UserModel> GetUser(int userId)
+        {
+            return await ReportingWork
+                .GetUser(userId)
                 .ConfigureAwait(false);
         }
 

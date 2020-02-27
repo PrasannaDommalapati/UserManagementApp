@@ -7,6 +7,8 @@ namespace UserManagement.Business
 {
     public interface IReportingWork : IDisposable
     {
-        Task<List<UserModel>> UsersList();
+        Task<IEnumerable<UserModel>> UsersList();
+
+        Task<UserModel> GetUser(int userId);
     }
 }

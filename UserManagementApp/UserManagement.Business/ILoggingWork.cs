@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using UserManagement.Business.Models;
+using UserManagement.DataAccess.Entity;
 
 namespace UserManagement.Business
 {
@@ -14,6 +12,6 @@ namespace UserManagement.Business
 
         Task AddOrganisationToUserAsync();
 
-        Task AddRoleToUserAsync();
+        Task AddRoleToUserAsync(int userId, UserRole role);
     }
 }

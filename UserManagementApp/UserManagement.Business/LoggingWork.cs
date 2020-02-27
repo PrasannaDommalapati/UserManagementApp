@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UserManagement.Business.Models;
 using UserManagement.DataAccess;
@@ -22,9 +24,24 @@ namespace UserManagement.Business
             throw new System.NotImplementedException();
         }
 
-        public Task AddRoleToUserAsync()
+        public async Task AddRoleToUserAsync(int userId, UserRole role)
         {
-            throw new System.NotImplementedException();
+            var user = await DataContext
+                .Users
+                .Include("Roles")
+                .FirstOrDefaultAsync(a => a.Id == userId)
+                .ConfigureAwait(false);
+
+            user.Roles.Add(role);
+
+            await DataContext
+                .Users
+                .AddAsync(user)
+                .ConfigureAwait(false);
+
+            await DataContext
+                .UpdateAsync()
+                .ConfigureAwait(false);
         }
 
         public Task CreateOrganisationAsync()

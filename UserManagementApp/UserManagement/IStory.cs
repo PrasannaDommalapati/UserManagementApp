@@ -6,8 +6,10 @@ namespace UserManagement
 {
     public interface IStory
     {
-        Task<List<UserModel>> UsersList();
+        Task<IEnumerable<UserModel>> UsersList();
 
-        Task CreateUser(UserModel userDto);
+        Task<UserModel> GetUser(int userId);
+
+        Task CreateUser(UserModel userModel);
     }
 }
