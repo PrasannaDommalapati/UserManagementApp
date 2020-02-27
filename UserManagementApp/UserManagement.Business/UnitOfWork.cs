@@ -5,7 +5,7 @@ namespace UserManagement.Business
 {
     public class UnitOfWork : IDisposable
     {
-        protected IDataContext DataContext { get; }
+        protected IDataContext DataContext { get; set; }
 
         private bool Disposed;
 

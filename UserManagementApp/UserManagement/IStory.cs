@@ -6,7 +6,7 @@ namespace UserManagement
 {
     public interface IStory
     {
-        Task<IEnumerable<UserModel>> UsersList();
+        Task<List<UserModel>> UsersList();
 
         Task<UserModel> GetUser(int userId);
 

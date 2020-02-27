@@ -18,7 +18,7 @@ namespace UserManagement
             ReportingWork = reportingWork.ValidateNotNull();
         }
 
-        public async Task<IEnumerable<UserModel>> UsersList()
+        public async Task<List<UserModel>> UsersList()
         {
             return await ReportingWork
                 .UsersList()

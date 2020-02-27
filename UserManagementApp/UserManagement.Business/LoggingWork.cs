@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using UserManagement.Business.Models;
 using UserManagement.DataAccess;
@@ -12,7 +11,7 @@ namespace UserManagement.Business
 {
     public class LoggingWork : UnitOfWork, ILoggingWork
     {
-        private IMapper Mapper;
+        private readonly IMapper Mapper;
 
         public LoggingWork(IDataContext dataContext, IMapper mapper) : base(dataContext)
         {

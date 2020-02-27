@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using UserManagement.Business.Models;
 using UserManagement.DataAccess;
@@ -17,7 +16,7 @@ namespace UserManagement.Business
             Mapper = mapper;
         }
 
-        public async Task<IEnumerable<UserModel>> UsersList()
+        public async Task<List<UserModel>> UsersList()
         {
             var users = new List<UserModel>();
 
