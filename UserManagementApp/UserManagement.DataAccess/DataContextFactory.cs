@@ -6,8 +6,7 @@ namespace UserManagement.DataAccess
     {
         public string ConnectionString { get; }
 
-        public DataContextFactory(IOptions<DataContextConfiguration> configuration):this(configuration.Value)
-        {}
+        public DataContextFactory(IOptions<DataContextConfiguration> configuration) : this(configuration.Value) { }
 
         public DataContextFactory(DataContextConfiguration dataContextConfiguration)
         {
