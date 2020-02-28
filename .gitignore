@@ -3,8 +3,8 @@
 ################################################################################
 
 /UserManagementApp/.vs/*
-/UserManagementApp/UserManagement.**/bin/*
-/UserManagementApp/UserManagement.**/obj/*
+/UserManagementApp/UserManagement.*/bin/*
+/UserManagementApp/UserManagement.*/obj/*
 /UserManagementApp/UserManagement/obj/*
 /UserManagementApp/UserManagement.API/obj/*
 
