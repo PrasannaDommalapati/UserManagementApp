@@ -22,10 +22,15 @@ jobs:
       continue-on-error: false
       run: dotnet test --configuration Release
       working-directory: UserManagementApp/
+    
+    - name: Publish
+      continue-on-error: false
+      run: dotnet publish --configuration Release
+      working-directory: UserManagementApp/Artifacts
       
     - name: Upload artifact
       continue-on-error: false
       uses: actions/upload-artifact@v1.0.0
       with: 
         name: UserManagementApp
-        path: UserManagementApp/
+        path: UserManagementApp/Artifacts
