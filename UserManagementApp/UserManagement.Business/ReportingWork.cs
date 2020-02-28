@@ -22,6 +22,8 @@ namespace UserManagement.Business
 
             var usersList = await DataContext
                 .Users
+                .Include("Roles")
+                .Include("Organisations")
                 .ToListAsync()
                 .ConfigureAwait(false);
 
