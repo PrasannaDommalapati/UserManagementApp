@@ -11,7 +11,7 @@ namespace UserManagement.Business.Tests
         }
 
         [Fact]
-        public async Task CreateUser_Default_Role()
+        public void CreateUser_Default_Role()
         {
         }
     }

@@ -6,5 +6,6 @@
 /UserManagementApp/UserManagement.*/bin/*
 /UserManagementApp/UserManagement.*/obj/*
 /UserManagementApp/UserManagement/obj/*
+/UserManagementApp/UserManagement/AppUserManagement/bin/*
 /UserManagementApp/UserManagement.API/obj/*
 
