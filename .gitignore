@@ -23,7 +23,10 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
+**/bin/*
 
-/UserManagementApp/UserManagement.UI/bin
-/UserManagementApp/UserManagement.UI/obj
+
+/UserManagementApp/UserManagement.UI/bin/*
+/UserManagementApp/UserManagement.UI/obj/*
 /UserManagementApp/UserManagement.DataAccess/UserManagement.DataAccess.csproj.user
+/UserManagementApp/UserManagement.Business.Tests/UserManagement.Business.Tests.csproj.user
