@@ -2,4 +2,4 @@ variables:
 - name: PoolName
   value: 'Azure Pipelines'
 - name: vmImage
-  value: 'vs2017-win2016'
+  value: 'ubuntu-latest'
