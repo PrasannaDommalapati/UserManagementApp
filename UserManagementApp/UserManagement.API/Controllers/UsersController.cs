@@ -27,7 +27,7 @@ namespace UserManagement.API.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IE<UserModel>> GetUsers()
+        public async Task<IEnumerable<UserModel>> GetUsers()
         {
             return await Story
                 .UsersList()
