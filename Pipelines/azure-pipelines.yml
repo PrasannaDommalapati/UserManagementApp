@@ -1,0 +1,15 @@
+variables:
+- template: ./Variables/common.yml
+  
+trigger:
+- master
+stages:
+- stage: CI_Build
+  jobs:
+  - job: Build
+    pool: ${{ variables.PoolName}}
+     
+    steps:
+    - template: ./build.yml
+      parameters:
+        AppserviceArtifact: 'UserManangement.API'

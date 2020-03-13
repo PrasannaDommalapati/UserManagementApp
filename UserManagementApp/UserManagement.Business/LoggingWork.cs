@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,11 +10,8 @@ namespace UserManagement.Business
 {
     public class LoggingWork : UnitOfWork, ILoggingWork
     {
-        private readonly IMapper Mapper;
-
-        public LoggingWork(IDataContext dataContext, IMapper mapper) : base(dataContext)
+        public LoggingWork(IDataContext dataContext) : base(dataContext)
         {
-            Mapper = mapper;
         }
 
         public Task AddOrganisationToUserAsync()

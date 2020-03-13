@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagment.UI\\UserManagment.UI.csproj": {}
+    "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagment.UI\\UserManagment.UI.csproj": {}
   },
   "projects": {
-    "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagement.Business\\UserManagement.Business.csproj": {
+    "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagement.Business\\UserManagement.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagement.Business\\UserManagement.Business.csproj",
+        "projectUniqueName": "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagement.Business\\UserManagement.Business.csproj",
         "projectName": "UserManagement.Business",
-        "projectPath": "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagement.Business\\UserManagement.Business.csproj",
-        "packagesPath": "C:\\Users\\Prasanna Dommalapati\\.nuget\\packages\\",
-        "outputPath": "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagement.Business\\obj\\",
+        "projectPath": "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagement.Business\\UserManagement.Business.csproj",
+        "packagesPath": "C:\\Users\\PRASANNA KUMAR\\.nuget\\packages\\",
+        "outputPath": "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagement.Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Prasanna Dommalapati\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PRASANNA KUMAR\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -27,13 +27,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://almengineering.pkgs.visualstudio.com/_packaging/ALM.InternalLibrary/nuget/v3/index.json": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/almengineering/_packaging/HOL.InternalLibrary/nuget/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagement.DataAccess\\UserManagement.DataAccess.csproj": {
-                "projectPath": "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagement.DataAccess\\UserManagement.DataAccess.csproj"
+              "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagement.DataAccess\\UserManagement.DataAccess.csproj": {
+                "projectPath": "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagement.DataAccess\\UserManagement.DataAccess.csproj"
               }
             }
           }
@@ -75,25 +77,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagement.DataAccess\\UserManagement.DataAccess.csproj": {
+    "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagement.DataAccess\\UserManagement.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagement.DataAccess\\UserManagement.DataAccess.csproj",
+        "projectUniqueName": "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagement.DataAccess\\UserManagement.DataAccess.csproj",
         "projectName": "UserManagement.DataAccess",
-        "projectPath": "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagement.DataAccess\\UserManagement.DataAccess.csproj",
-        "packagesPath": "C:\\Users\\Prasanna Dommalapati\\.nuget\\packages\\",
-        "outputPath": "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagement.DataAccess\\obj\\",
+        "projectPath": "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagement.DataAccess\\UserManagement.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\PRASANNA KUMAR\\.nuget\\packages\\",
+        "outputPath": "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagement.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Prasanna Dommalapati\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PRASANNA KUMAR\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -102,7 +104,9 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://almengineering.pkgs.visualstudio.com/_packaging/ALM.InternalLibrary/nuget/v3/index.json": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/almengineering/_packaging/HOL.InternalLibrary/nuget/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
@@ -148,25 +152,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagment.UI\\UserManagment.UI.csproj": {
+    "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagment.UI\\UserManagment.UI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagment.UI\\UserManagment.UI.csproj",
+        "projectUniqueName": "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagment.UI\\UserManagment.UI.csproj",
         "projectName": "UserManagment.UI",
-        "projectPath": "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagment.UI\\UserManagment.UI.csproj",
-        "packagesPath": "C:\\Users\\Prasanna Dommalapati\\.nuget\\packages\\",
-        "outputPath": "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagment.UI\\obj\\",
+        "projectPath": "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagment.UI\\UserManagment.UI.csproj",
+        "packagesPath": "C:\\Users\\PRASANNA KUMAR\\.nuget\\packages\\",
+        "outputPath": "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagment.UI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Prasanna Dommalapati\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\PRASANNA KUMAR\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -175,13 +179,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://almengineering.pkgs.visualstudio.com/_packaging/ALM.InternalLibrary/nuget/v3/index.json": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/almengineering/_packaging/HOL.InternalLibrary/nuget/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagement.Business\\UserManagement.Business.csproj": {
-                "projectPath": "C:\\repos\\Development\\UserManagement\\UserManagementApp\\UserManagement.Business\\UserManagement.Business.csproj"
+              "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagement.Business\\UserManagement.Business.csproj": {
+                "projectPath": "C:\\Development\\AXANonProd\\UserManagementApp\\UserManagementApp\\UserManagement.Business\\UserManagement.Business.csproj"
               }
             }
           }
@@ -194,6 +200,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -212,7 +224,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

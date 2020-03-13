@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Xunit;
+﻿using Xunit;
 
 namespace UserManagement.Business.Tests
 {
@@ -7,7 +6,6 @@ namespace UserManagement.Business.Tests
     {
         public LoggingworkTests()
         {
-
         }
 
         [Fact]
