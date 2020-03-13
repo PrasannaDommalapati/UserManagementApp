@@ -33,7 +33,6 @@ namespace UserManagment.UI
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
-
             services
                 .AddHttpClient<IUsersService, UsersService>(r =>
                 {
