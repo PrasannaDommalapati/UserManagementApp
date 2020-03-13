@@ -7,7 +7,9 @@ stages:
 - stage: CI_Build
   jobs:
   - job: Build
-    pool: ${{ variables.PoolName}}
+    pool: 
+      name: ${{ variables.PoolName}}
+      vmImage: ${{ variables.vmImage}}
      
     steps:
     - template: ./build.yml
