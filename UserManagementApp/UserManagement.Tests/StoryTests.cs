@@ -1,5 +1,6 @@
 using Bogus;
 using Moq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UserManagement.Business;
 using UserManagement.Business.Helpers;
@@ -15,20 +16,36 @@ namespace UserManagement.Tests
         private readonly IStory Story;
         private readonly Faker Faker;
         private readonly UserModel UserModel;
+        private readonly List<UserModel> UserModels;
 
         public StoryTests()
         {
             Faker = new Faker();
-            LoggingWork = new Mock<ILoggingWork>();
-            ReportingWork = new Mock<IReportingWork>();
-            Story = new Story(LoggingWork.Object, ReportingWork.Object);
 
             UserModel = new UserModel
             {
+                Id = 10,
                 Email = Faker.Internet.Email(),
                 FirstName = Faker.Name.FirstName(),
                 LastName = Faker.Name.LastName(),
             };
+            UserModels = new List<UserModel>
+            {
+                UserModel
+            };
+
+            LoggingWork = new Mock<ILoggingWork>();
+            ReportingWork = new Mock<IReportingWork>();
+
+            ReportingWork
+                .Setup(r => r.GetUser(It.Is<int>(u => u == UserModel.Id)))
+                .ReturnsAsync(UserModel);
+
+            ReportingWork
+                .Setup(r => r.UsersList())
+                .ReturnsAsync(UserModels);
+
+            Story = new Story(LoggingWork.Object, ReportingWork.Object);
         }
 
         [Fact]
@@ -50,5 +67,23 @@ namespace UserManagement.Tests
             //assert
             LoggingWork.Verify(d => d.CreateUserAsync(It.Is<UserModel>(u => u.Email == UserModel.Email)));
         }
+
+        [Fact]
+        public async Task GetUser_Success()
+        {
+            var user = await Story.GetUser(10).ConfigureAwait(false);
+
+            Assert.Equal(UserModel.Id, user.Id);
+        }
+
+        [Fact]
+        public async Task UserList_Success()
+        {
+            var users = await Story.UsersList().ConfigureAwait(false);
+
+            Assert.Single(users);
+            Assert.Equal(UserModel.LastName, users[0].LastName);
+        }
+
     }
 }

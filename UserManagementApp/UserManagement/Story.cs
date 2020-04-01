@@ -38,5 +38,30 @@ namespace UserManagement
                 .CreateUserAsync(userModel)
                 .ConfigureAwait(false);
         }
+
+        public Task<List<OrganisationModel>> Organisations()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<OrganisationModel> Organisation(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task CreateOrganisation(UserModel userModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteUser(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteOrganisation(int userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

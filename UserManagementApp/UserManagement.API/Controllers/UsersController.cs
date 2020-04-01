@@ -7,7 +7,7 @@ using UserManagement.Business.Models;
 
 namespace UserManagement.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -23,7 +23,7 @@ namespace UserManagement.API.Controllers
         /// Get the list of users registered
         /// </summary>
         /// <returns>List of users</returns>
-        [HttpGet]
+        [HttpGet(Name = "Users")]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -47,7 +47,7 @@ namespace UserManagement.API.Controllers
         }
 
         // GET: api/Users/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "User")]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -66,8 +66,11 @@ namespace UserManagement.API.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
+            await Story
+                .DeleteUser(id)
+                .ConfigureAwait(false);
         }
     }
 }

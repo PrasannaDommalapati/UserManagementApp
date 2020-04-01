@@ -10,6 +10,16 @@ namespace UserManagement
 
         Task<UserModel> GetUser(int userId);
 
+        Task DeleteUser(int userId);
+
         Task CreateUser(UserModel userModel);
+
+        Task<List<OrganisationModel>> Organisations();
+
+        Task<OrganisationModel> Organisation(int userId);
+
+        Task DeleteOrganisation(int userId);
+
+        Task CreateOrganisation(UserModel userModel);
     }
 }
