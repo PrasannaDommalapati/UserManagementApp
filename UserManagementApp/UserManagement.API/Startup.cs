@@ -53,7 +53,6 @@ namespace UserManagement.API
                         Email = "dommalapati.chowdary@gmail.com"
                     }
                 });
-
             });
 
             services.Configure<DataContextConfiguration>(Configuration.GetSection("ConnectionStrings"))

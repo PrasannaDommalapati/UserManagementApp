@@ -4,7 +4,7 @@ using UserManagement.Business.Models;
 
 namespace UserManagment.UI.Services
 {
-    public interface IUsersService
+    public interface IUserService
     {
         Task<List<UserModel>> GetUsers();
     }

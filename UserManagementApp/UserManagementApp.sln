@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.API.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.Business.Tests", "UserManagement.Business.Tests\UserManagement.Business.Tests.csproj", "{2C79993B-8CB9-4BF4-9568-2ED560A6CC22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.DataAccess.Tests", "UserManagement.DataAccess.Tests\UserManagement.DataAccess.Tests.csproj", "{6DAF4000-A210-42F0-9850-BB9B08C1D780}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.DataAccess.Tests", "UserManagement.DataAccess.Tests\UserManagement.DataAccess.Tests.csproj", "{6DAF4000-A210-42F0-9850-BB9B08C1D780}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

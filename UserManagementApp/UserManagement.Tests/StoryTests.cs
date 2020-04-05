@@ -85,5 +85,17 @@ namespace UserManagement.Tests
             Assert.Equal(UserModel.LastName, users[0].LastName);
         }
 
+        [Fact]
+        public async Task DeleteUser_Success()
+        {
+            //act
+            await Story
+                .DeleteUser(10)
+                .ConfigureAwait(false);
+
+            //assert
+            LoggingWork.Verify(d => d.DeleteUserAsync(It.Is<int>(u => u == UserModel.Id)));
+        }
+
     }
 }

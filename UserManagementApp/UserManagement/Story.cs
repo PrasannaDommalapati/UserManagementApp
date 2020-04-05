@@ -6,7 +6,7 @@ using UserManagement.Business.Models;
 
 namespace UserManagement
 {
-    public class Story : IStory
+    public partial class Story : IStory
     {
         private readonly IReportingWork ReportingWork;
 
@@ -39,29 +39,11 @@ namespace UserManagement
                 .ConfigureAwait(false);
         }
 
-        public Task<List<OrganisationModel>> Organisations()
+        public async Task DeleteUser(int userId)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<OrganisationModel> Organisation(int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task CreateOrganisation(UserModel userModel)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteUser(int userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteOrganisation(int userId)
-        {
-            throw new NotImplementedException();
+            await LoggingWork
+                .DeleteUserAsync(userId)
+                .ConfigureAwait(false);
         }
     }
 }

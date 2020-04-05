@@ -13,8 +13,7 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "UsersAPI:Host": "https://localhost:44372",
-        "UsersAPI:Key": "Key"
+        "UsersAPI:Host": "https://localhost:44372"
       }
     },
     "UserManagment.UI": {
@@ -23,8 +22,7 @@
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "UsersAPI:Host": "https://localhost:44372/",
-        "UsersAPI:Key": "Key"
+        "UsersAPI:Host": "https://localhost:44372/"
       }
     }
   }

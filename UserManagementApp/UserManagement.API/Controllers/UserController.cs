@@ -7,13 +7,13 @@ using UserManagement.Business.Models;
 
 namespace UserManagement.API.Controllers
 {
-    [Route("api/user")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IStory Story;
 
-        public UsersController(IStory story)
+        public UserController(IStory story)
         {
             Story = story;
         }
@@ -59,8 +59,8 @@ namespace UserManagement.API.Controllers
         }
 
         // PUT: api/Users/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{userId}")]
+        public void Put(int userId, [FromBody] UserModel userModel)
         {
         }
 

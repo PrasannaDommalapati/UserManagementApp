@@ -72,5 +72,43 @@ namespace UserManagement.Business
                 .UpdateAsync()
                 .ConfigureAwait(false);
         }
+
+        public async Task DeleteUserAsync(int userId)
+        {
+            var user = new User
+            {
+                Id = userId
+            };
+
+            DataContext.Users.Remove(user);
+
+            await DataContext
+                .UpdateAsync()
+                .ConfigureAwait(false);
+        }
+
+        public async Task UpdateUserAsync(UserModel userDto)
+        {
+            var user = new User
+            {
+                Id = userDto.Id,
+                FirstName = userDto.FirstName,
+                LastName = userDto.LastName,
+                Email = userDto.Email,
+                Birthday = userDto.Birthday,
+                Organisations = userDto.Organisations,
+                Roles = userDto.Roles,
+                DateCreated = DateTime.UtcNow.Date,
+                DateModified = DateTime.UtcNow.Date
+            };
+
+            DataContext
+               .Users
+               .Update(user);
+
+            await DataContext
+                .UpdateAsync()
+                .ConfigureAwait(false);
+        }
     }
 }

@@ -27,17 +27,11 @@ namespace UserManagment.UI
                .GetValue<string>("Host")
                .TrimEnd('/');
 
-            var apiKey = Configuration.GetSection("UsersAPI").GetValue<string>("Key");
-
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
             services
-                .AddHttpClient<IUsersService, UsersService>(r =>
-                {
-                    r.BaseAddress = new Uri($"{apiHost}/api/users");
-                    r.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", apiKey);
-                })
+                .AddHttpClient<IUserService, UserService>(r => r.BaseAddress = new Uri(apiHost))
                 .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { UseProxy = false });
         }
 

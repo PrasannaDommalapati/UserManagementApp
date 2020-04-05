@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace UserManagement.API.Controllers
 {
-    [Route("api/organisation")]
+    [Route("api/[controller]")]
     [ApiController]
     public class OrganisationController : ControllerBase
     {
