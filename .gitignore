@@ -30,3 +30,6 @@ bld/
 /UserManagementApp/UserManagement.UI/obj/*
 /UserManagementApp/UserManagement.DataAccess/UserManagement.DataAccess.csproj.user
 /UserManagementApp/UserManagement.Business.Tests/UserManagement.Business.Tests.csproj.user
+
+*.pdb
+*.dll

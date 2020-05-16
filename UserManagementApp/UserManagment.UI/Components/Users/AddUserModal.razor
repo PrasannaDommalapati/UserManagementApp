@@ -1,0 +1,18 @@
+﻿@page "/add-user"
+
+@inherits AdduserBase
+@inject IJSRuntime CurrentJSRuntime
+
+
+    <EditForm Model="@UserModel" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <InputText id="email" @bind-Value="UserModel.Email" />
+        <InputText id="first-name" @bind-Value="UserModel.FirstName" />
+        <InputText id="last-name" @bind-Value="UserModel.LastName" />
+        <InputDate id="birthday" @bind-Value="UserModel.Birthday" />
+
+        <button type="submit">Submit</button>
+
+    </EditForm>
