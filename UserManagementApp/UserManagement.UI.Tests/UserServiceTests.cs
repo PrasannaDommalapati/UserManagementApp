@@ -12,10 +12,27 @@ namespace UserManagement.UI.Tests
 {
     public class UserServiceTests
     {
-        private Mock<HttpClient> HttpClient;
+        private HttpClient HttpClient;
         private IUserService UserService;
 
         public UserServiceTests()
+        {
+            HttpClient = new HttpClient
+            {
+                BaseAddress = new Uri("https://localhost:44372")
+            };
+
+            UserService = new UserService(HttpClient);
+        }
+
+        [Fact]
+        public void Ctor_Null_HttpClient()
+        {
+            Assert.Throws<ArgumentNullException>(() => new UserService(null));
+        }
+
+        [Fact]
+        public async Task GetUsers_Returns_SingleUser()
         {
             var userList = new List<UserModel>
             {
@@ -30,24 +47,10 @@ namespace UserManagement.UI.Tests
                 Content = new StringContent(JsonSerializer.Serialize(userList))
             };
 
-            HttpClient = new Mock<HttpClient>();
+            //HttpClient
+            //   .Setup(m => m.GetAsync(It.Is<string>(s => s.Equals(@"/api/user"))))
+            //   .Returns(Task.FromResult(responsemessage));
 
-            HttpClient
-                .Setup(m => m.GetAsync(It.Is<string>(s => s.Equals(@"/api/user"))))
-                .Returns(Task.FromResult(responsemessage));
-
-            UserService = new UserService(HttpClient.Object);
-        }
-
-        [Fact]
-        public void Ctor_Null_HttpClient()
-        {
-            Assert.Throws<ArgumentNullException>(() => new UserService(null));
-        }
-
-        [Fact]
-        public async Task GetUsers_Returns_SingleUser()
-        {
             var result = await UserService.GetUsers().ConfigureAwait(false);
 
 
