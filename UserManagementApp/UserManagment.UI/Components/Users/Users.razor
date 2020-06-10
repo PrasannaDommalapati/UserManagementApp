@@ -4,11 +4,41 @@
 @inject IJSRuntime CurrentJSRuntime
 
 <div>
-    <button class="btn btn-primary float-right mb-2"
+    <button class="@ShowAddUser btn btn-primary float-right mb-2"
             @onclick="AddUser">
         <span class="fas fa-lg fa-user-plus"></span>
         Add User
     </button>
+</div>
+<div class="@ShowAddUserForm">
+    <EditForm Model="@UserModel" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="form-group">
+            <label for="email">Email</label>
+            <InputText class="form-control" id="email" @bind-Value="UserModel.Email" />
+        </div>
+        <div class="form-group">
+            <label for="first-name">First Name</label>
+            <InputText class="form-control" id="first-name" @bind-Value="UserModel.FirstName" />
+        </div>
+
+        <div class="form-group">
+            <label for="last-name">Laast Name</label>
+            <InputText class="form-control" id="last-name" @bind-Value="UserModel.LastName" />
+        </div>
+
+        <div class="form-group">
+            <label for="birthday">Birthday</label>
+            <InputDate class="form-control" id="birthday" @bind-Value="UserModel.Birthday" />
+        </div>
+
+
+        <button class="btn btn-primary float-right mb-2" type="submit">
+            Submit
+        </button>
+
+    </EditForm>
 </div>
 
 <table class="table">
@@ -19,6 +49,7 @@
             <th>Last Name</th>
             <th>Email</th>
             <th>Birthday</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -30,8 +61,13 @@
                 <td>@user.LastName</td>
                 <td>@user.Email</td>
                 <td>@user.Birthday</td>
+                <td>
+                    <button class="btn btn-primary"
+                            @onclick="(() => DeleteUser(user.Id))">
+                        <span class="fas fa-trash-alt"></span>
+                    </button>
+                </td>
             </tr>
         }
     </tbody>
 </table>
-

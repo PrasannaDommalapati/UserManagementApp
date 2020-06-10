@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Mime;
+using System.Text;
 using System.Threading.Tasks;
 using UserManagement.Business.Models;
 
@@ -22,6 +24,23 @@ namespace UserManagment.UI.Services
             var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return JsonConvert.DeserializeObject<List<UserModel>>(content);
+        }
+
+        public async Task Create(UserModel user)
+        {
+            var content = new StringContent(
+                JsonConvert.SerializeObject(user),
+                Encoding.UTF8,
+                MediaTypeNames.Application.Json);
+
+            await HttpClient.PostAsync("api/user", content).ConfigureAwait(false);
+        }
+
+        public async Task Delete(int id)
+        {
+            await HttpClient
+                .DeleteAsync($"api/user/{id}")
+                .ConfigureAwait(false);
         }
     }
 }

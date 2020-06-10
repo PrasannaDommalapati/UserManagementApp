@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace UserManagement.DataAccess.Migrations
 {
-    [ExcludeFromCodeCoverage]
     public partial class InitialSchema : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

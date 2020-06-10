@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UserManagement.Business.Models;
 using UserManagement.DataAccess;
@@ -75,10 +76,12 @@ namespace UserManagement.Business
 
         public async Task DeleteUserAsync(int userId)
         {
-            var user = new User
-            {
-                Id = userId
-            };
+            var user = await DataContext
+                .Users
+                .Include(d => d.Roles)
+                .Include(d => d.Organisations)
+                .FirstOrDefaultAsync(d => d.Id == userId)
+                .ConfigureAwait(false);
 
             DataContext.Users.Remove(user);
 

@@ -10,14 +10,14 @@ using UserManagement.DataAccess;
 namespace UserManagement.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191231145420_InitialSchema")]
+    [Migration("20200610072925_InitialSchema")]
     partial class InitialSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0")
+                .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 

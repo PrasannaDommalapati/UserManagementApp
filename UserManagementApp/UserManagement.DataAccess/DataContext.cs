@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Threading.Tasks;
 using UserManagement.DataAccess.Entity;
 
@@ -6,7 +7,7 @@ namespace UserManagement.DataAccess
 {
     public class DataContext : DbContext, IDataContext
     {
-        private string ConnectionString { get;}
+        private string ConnectionString { get; }
 
         public DbSet<User> Users { get; set; }
 
@@ -20,13 +21,13 @@ namespace UserManagement.DataAccess
 
         public DataContext(string connectionString) => ConnectionString = connectionString;
 
-        public DataContext():this("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=UserManagementApp;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+        public DataContext() : this("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=UserManagementApp;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
         {
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if(ConnectionString != null)
+            if (ConnectionString != null)
             {
                 optionsBuilder.UseSqlServer(ConnectionString, options => options.EnableRetryOnFailure());
             }
