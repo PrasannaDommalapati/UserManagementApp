@@ -8,6 +8,24 @@ namespace UserManagement.DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Addresses",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    OrganisationId = table.Column<int>(nullable: false),
+                    AddressLine = table.Column<string>(nullable: false),
+                    TownOrCity = table.Column<string>(nullable: false),
+                    County = table.Column<string>(nullable: false),
+                    Postcode = table.Column<string>(nullable: false),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    DateModified = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Addresses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RoleTypes",
                 columns: table => new
                 {
@@ -24,8 +42,7 @@ namespace UserManagement.DataAccess.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     Email = table.Column<string>(nullable: false),
                     FirstName = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(nullable: false),
@@ -42,17 +59,23 @@ namespace UserManagement.DataAccess.Migrations
                 name: "Organisations",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     OrganisationName = table.Column<string>(nullable: false),
+                    AddressId = table.Column<Guid>(nullable: false),
                     Licence = table.Column<string>(nullable: false),
                     DateCreated = table.Column<DateTime>(nullable: false),
                     DateModified = table.Column<DateTime>(nullable: false),
-                    UserId = table.Column<int>(nullable: true)
+                    UserId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Organisations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Organisations_Addresses_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Organisations_Users_UserId",
                         column: x => x.UserId,
@@ -65,10 +88,9 @@ namespace UserManagement.DataAccess.Migrations
                 name: "UserRoles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     Role = table.Column<string>(nullable: true),
-                    UserId = table.Column<int>(nullable: true)
+                    UserId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -79,31 +101,6 @@ namespace UserManagement.DataAccess.Migrations
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Addresses",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OrganisationId = table.Column<int>(nullable: false),
-                    AddressLine = table.Column<string>(nullable: false),
-                    TownOrCity = table.Column<string>(nullable: false),
-                    County = table.Column<string>(nullable: false),
-                    Postcode = table.Column<string>(nullable: false),
-                    DateCreated = table.Column<DateTime>(nullable: false),
-                    DateModified = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Addresses", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Addresses_Organisations_OrganisationId",
-                        column: x => x.OrganisationId,
-                        principalTable: "Organisations",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -118,10 +115,9 @@ namespace UserManagement.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Addresses_OrganisationId",
-                table: "Addresses",
-                column: "OrganisationId",
-                unique: true);
+                name: "IX_Organisations_AddressId",
+                table: "Organisations",
+                column: "AddressId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Organisations_UserId",
@@ -137,7 +133,7 @@ namespace UserManagement.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Addresses");
+                name: "Organisations");
 
             migrationBuilder.DropTable(
                 name: "RoleTypes");
@@ -146,7 +142,7 @@ namespace UserManagement.DataAccess.Migrations
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
-                name: "Organisations");
+                name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "Users");

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using UserManagement.Business.Models;
 using UserManagement.DataAccess.Entity;
 
@@ -14,8 +15,8 @@ namespace UserManagement.Business
 
         Task AddOrganisationToUserAsync();
 
-        Task AddRoleToUserAsync(int userId, UserRole role);
+        Task AddRoleToUserAsync(Guid userId, UserRole role);
 
-        Task DeleteUserAsync(int userId);
+        Task DeleteUserAsync(Guid userId);
     }
 }

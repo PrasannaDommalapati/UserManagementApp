@@ -20,7 +20,7 @@ namespace UserManagement.Business
             throw new System.NotImplementedException();
         }
 
-        public async Task AddRoleToUserAsync(int userId, UserRole role)
+        public async Task AddRoleToUserAsync(Guid userId, UserRole role)
         {
             var user = await DataContext
                 .Users
@@ -74,7 +74,7 @@ namespace UserManagement.Business
                 .ConfigureAwait(false);
         }
 
-        public async Task DeleteUserAsync(int userId)
+        public async Task DeleteUserAsync(Guid userId)
         {
             var user = await DataContext
                 .Users

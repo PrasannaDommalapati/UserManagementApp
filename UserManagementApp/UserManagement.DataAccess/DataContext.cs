@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using UserManagement.DataAccess.Entity;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace UserManagement.DataAccess
 {
@@ -21,7 +23,7 @@ namespace UserManagement.DataAccess
 
         public DataContext(string connectionString) => ConnectionString = connectionString;
 
-        public DataContext() : this("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=UserManagementApp;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
+        public DataContext() : this("Data Source=PRASANNALAPTOP\\SQLEXPRESS;Initial Catalog=UserManagementApp;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
         {
         }
 

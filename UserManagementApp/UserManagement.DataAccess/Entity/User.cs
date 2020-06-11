@@ -9,7 +9,7 @@ namespace UserManagement.DataAccess.Entity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public string Email { get; set; }
@@ -27,8 +27,8 @@ namespace UserManagement.DataAccess.Entity
         
         public DateTime DateModified { get; set; }
 
-        public virtual List<UserRole> Roles { get; set; }
+        public virtual ICollection<UserRole> Roles { get; set; }
 
-        public virtual List<Organisation> Organisations { get; set; }
+        public virtual ICollection<Organisation> Organisations { get; set; }
     }
 }

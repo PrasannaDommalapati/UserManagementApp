@@ -6,7 +6,7 @@ using UserManagement.Business.Models;
 
 namespace UserManagement
 {
-    public partial class Story : IStory
+    public class Story : IUser
     {
         private readonly IReportingWork ReportingWork;
 
@@ -25,7 +25,7 @@ namespace UserManagement
                 .ConfigureAwait(false);
         }
 
-        public async Task<UserModel> GetUser(int userId)
+        public async Task<UserModel> GetUser(Guid userId)
         {
             return await ReportingWork
                 .GetUser(userId)
@@ -39,7 +39,7 @@ namespace UserManagement
                 .ConfigureAwait(false);
         }
 
-        public async Task DeleteUser(int userId)
+        public async Task DeleteUser(Guid userId)
         {
             await LoggingWork
                 .DeleteUserAsync(userId)

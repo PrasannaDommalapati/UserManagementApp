@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UserManagement.Business.Models;
@@ -35,7 +36,7 @@ namespace UserManagement.Business
             return users;
         }
 
-        public async Task<UserModel> GetUser(int userId)
+        public async Task<UserModel> GetUser(Guid userId)
         {
             var users = await DataContext
                 .Users

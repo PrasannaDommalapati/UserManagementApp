@@ -1,5 +1,6 @@
 using Bogus;
 using Moq;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UserManagement.Business;
@@ -13,7 +14,7 @@ namespace UserManagement.Tests
     {
         private readonly Mock<ILoggingWork> LoggingWork;
         private readonly Mock<IReportingWork> ReportingWork;
-        private readonly IStory Story;
+        private readonly IUser Story;
         private readonly Faker Faker;
         private readonly UserModel UserModel;
         private readonly List<UserModel> UserModels;
@@ -24,7 +25,7 @@ namespace UserManagement.Tests
 
             UserModel = new UserModel
             {
-                Id = 10,
+                Id = Faker.Random.Guid(),
                 Email = Faker.Internet.Email(),
                 FirstName = Faker.Name.FirstName(),
                 LastName = Faker.Name.LastName(),
@@ -38,7 +39,7 @@ namespace UserManagement.Tests
             ReportingWork = new Mock<IReportingWork>();
 
             ReportingWork
-                .Setup(r => r.GetUser(It.Is<int>(u => u == UserModel.Id)))
+                .Setup(r => r.GetUser(It.Is<Guid>(u => u == UserModel.Id)))
                 .ReturnsAsync(UserModel);
 
             ReportingWork
@@ -71,7 +72,7 @@ namespace UserManagement.Tests
         [Fact]
         public async Task GetUser_Success()
         {
-            var user = await Story.GetUser(10).ConfigureAwait(false);
+            var user = await Story.GetUser(UserModel.Id).ConfigureAwait(false);
 
             Assert.Equal(UserModel.Id, user.Id);
         }
@@ -90,11 +91,11 @@ namespace UserManagement.Tests
         {
             //act
             await Story
-                .DeleteUser(10)
+                .DeleteUser(UserModel.Id)
                 .ConfigureAwait(false);
 
             //assert
-            LoggingWork.Verify(d => d.DeleteUserAsync(It.Is<int>(u => u == UserModel.Id)));
+            LoggingWork.Verify(d => d.DeleteUserAsync(It.Is<Guid>(u => u == UserModel.Id)));
         }
 
     }

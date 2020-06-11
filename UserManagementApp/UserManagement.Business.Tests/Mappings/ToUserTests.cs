@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Bogus;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UserManagement.Business.Mappings;
 using UserManagement.Business.Models;
 using UserManagement.DataAccess.Entity;
@@ -25,7 +27,7 @@ namespace UserManagement.Business.Tests.Mappings
             //arrange
             var user = new User
             {
-                Id = Faker.Random.Number(),
+                Id = Faker.Random.Guid(),
                 Email = Faker.Random.String(),
                 FirstName = Faker.Name.FirstName(),
                 LastName = Faker.Name.LastName(),
@@ -34,7 +36,7 @@ namespace UserManagement.Business.Tests.Mappings
                 Organisations = new List<Organisation> {
                     new Organisation
                     {
-                        Id = 10
+                        Id = Guid.NewGuid()
                     } 
                 },
                 Roles = new List<UserRole>
@@ -57,10 +59,10 @@ namespace UserManagement.Business.Tests.Mappings
             Assert.Equal(user.DateModified, userModel.DateModified);
 
             Assert.True(userModel.Roles.Count == 1);
-            Assert.Equal(user.Roles[0].Role, userModel.Roles[0].Role);
+            Assert.Equal(user.Roles.ToList()[0].Role, userModel.Roles[0].Role);
 
             Assert.True(userModel.Organisations.Count == 1);
-            Assert.Equal(user.Organisations[0].Id, userModel.Organisations[0].Id);
+            Assert.Equal(user.Organisations.ToList()[0].Id, userModel.Organisations[0].Id);
         }
     }
 }

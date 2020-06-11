@@ -60,7 +60,8 @@ namespace UserManagement.API
             .AddSingleton<IDataContext, DataContext>()
             .AddSingleton<ILoggingWork, LoggingWork>()
             .AddSingleton<IReportingWork, ReportingWork>()
-            .AddSingleton<IStory, Story>()
+            .AddSingleton<IUser, Story>()
+            .AddSingleton<IStory, Organisation>()
             .AddSingleton(typeof(IMapper), AutoMapperConfiguration.Create());
         }
 

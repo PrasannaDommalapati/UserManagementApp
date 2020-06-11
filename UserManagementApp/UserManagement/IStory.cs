@@ -6,17 +6,9 @@ namespace UserManagement
 {
     public interface IStory
     {
-        Task<List<UserModel>> UsersList();
-
-        Task<UserModel> GetUser(int userId);
-
-        Task DeleteUser(int userId);
-
-        Task CreateUser(UserModel userModel);
-
         Task<List<OrganisationModel>> Organisations();
 
-        Task<OrganisationModel> Organisation(int userId);
+        Task<OrganisationModel> GetOrganisation(int userId);
 
         Task DeleteOrganisation(int userId);
 

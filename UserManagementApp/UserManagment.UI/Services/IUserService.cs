@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UserManagement.Business.Models;
 
@@ -10,6 +11,6 @@ namespace UserManagment.UI.Services
 
         Task Create(UserModel user);
 
-        Task Delete(int id);
+        Task Delete(Guid id);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Net.Mime;
 using System.Threading.Tasks;
@@ -11,11 +12,11 @@ namespace UserManagement.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IStory Story;
+        private readonly IUser UserStory;
 
-        public UserController(IStory story)
+        public UserController(IUser userStory)
         {
-            Story = story;
+            UserStory = userStory;
         }
 
         // GET: api/Users
@@ -29,7 +30,7 @@ namespace UserManagement.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<List<UserModel>> GetUsers()
         {
-            return await Story
+            return await UserStory
                 .UsersList()
                 .ConfigureAwait(false);
         }
@@ -41,7 +42,7 @@ namespace UserManagement.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task Post([FromBody] UserModel userModel)
         {
-            await Story
+            await UserStory
                 .CreateUser(userModel)
                 .ConfigureAwait(false);
         }
@@ -51,9 +52,9 @@ namespace UserManagement.API.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<UserModel> Get(int id)
+        public async Task<UserModel> Get(Guid id)
         {
-            return await Story
+            return await UserStory
                 .GetUser(id)
                 .ConfigureAwait(false);
         }
@@ -68,9 +69,9 @@ namespace UserManagement.API.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task Delete(int id)
+        public async Task Delete(Guid id)
         {
-            await Story
+            await UserStory
                 .DeleteUser(id)
                 .ConfigureAwait(false);
         }
