@@ -9,9 +9,9 @@ using UserManagement.DataAccess;
 
 namespace UserManagement.DataAccess.Migrations
 {
-    [DbContext(typeof(DataContext))]
-    [Migration("20200611015738_InitialSchema")]
-    partial class InitialSchema
+    [DbContext(typeof(UserDataContext))]
+    [Migration("20200619123436_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,9 +23,10 @@ namespace UserManagement.DataAccess.Migrations
 
             modelBuilder.Entity("UserManagement.DataAccess.Entity.Address", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AddressLine")
                         .IsRequired()
@@ -54,17 +55,18 @@ namespace UserManagement.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("OrganisationId")
+                        .IsUnique();
+
                     b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("UserManagement.DataAccess.Entity.Organisation", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("AddressId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -80,12 +82,10 @@ namespace UserManagement.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
 
                     b.HasIndex("UserId");
 
@@ -131,12 +131,14 @@ namespace UserManagement.DataAccess.Migrations
 
             modelBuilder.Entity("UserManagement.DataAccess.Entity.User", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("Birthday")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasMaxLength(50);
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -146,15 +148,18 @@ namespace UserManagement.DataAccess.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
@@ -163,15 +168,16 @@ namespace UserManagement.DataAccess.Migrations
 
             modelBuilder.Entity("UserManagement.DataAccess.Entity.UserRole", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -180,14 +186,17 @@ namespace UserManagement.DataAccess.Migrations
                     b.ToTable("UserRoles");
                 });
 
-            modelBuilder.Entity("UserManagement.DataAccess.Entity.Organisation", b =>
+            modelBuilder.Entity("UserManagement.DataAccess.Entity.Address", b =>
                 {
-                    b.HasOne("UserManagement.DataAccess.Entity.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
+                    b.HasOne("UserManagement.DataAccess.Entity.Organisation", null)
+                        .WithOne("Address")
+                        .HasForeignKey("UserManagement.DataAccess.Entity.Address", "OrganisationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
 
+            modelBuilder.Entity("UserManagement.DataAccess.Entity.Organisation", b =>
+                {
                     b.HasOne("UserManagement.DataAccess.Entity.User", null)
                         .WithMany("Organisations")
                         .HasForeignKey("UserId");

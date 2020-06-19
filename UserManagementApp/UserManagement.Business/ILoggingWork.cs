@@ -15,8 +15,8 @@ namespace UserManagement.Business
 
         Task AddOrganisationToUserAsync();
 
-        Task AddRoleToUserAsync(Guid userId, UserRole role);
+        Task AddRoleToUserAsync(int userId, UserRole role);
 
-        Task DeleteUserAsync(Guid userId);
+        Task DeleteUserAsync(int userId);
     }
 }

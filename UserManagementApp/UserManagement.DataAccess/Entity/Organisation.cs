@@ -8,15 +8,17 @@ namespace UserManagement.DataAccess.Entity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
+        [MaxLength(100)]
         public string OrganisationName { get; set; }
 
         [Required]
         public virtual Address Address { get; set; }
-        
+     
         [Required]
+        [MaxLength(50)]
         public string Licence { get; set; }
 
         public DateTime DateCreated { get; set; }

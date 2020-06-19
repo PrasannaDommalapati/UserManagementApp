@@ -2,6 +2,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -55,13 +56,11 @@ namespace UserManagement.API
                 });
             });
 
-            services.Configure<DataContextConfiguration>(Configuration.GetSection("ConnectionStrings"))
-            .AddSingleton<IDataContextFactory, DataContextFactory>()
-            .AddSingleton<IDataContext, DataContext>()
-            .AddSingleton<ILoggingWork, LoggingWork>()
-            .AddSingleton<IReportingWork, ReportingWork>()
-            .AddSingleton<IUser, Story>()
-            .AddSingleton<IStory, Organisation>()
+            services.AddDbContext<UserDataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Default")))
+            .AddTransient<ILoggingWork, LoggingWork>()
+            .AddTransient<IReportingWork, ReportingWork>()
+            .AddTransient<IUser, Story>()
+            .AddTransient<IStory, Organisation>()
             .AddSingleton(typeof(IMapper), AutoMapperConfiguration.Create());
         }
 

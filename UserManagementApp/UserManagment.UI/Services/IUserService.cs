@@ -11,6 +11,6 @@ namespace UserManagment.UI.Services
 
         Task Create(UserModel user);
 
-        Task Delete(Guid id);
+        Task Delete(int id);
     }
 }

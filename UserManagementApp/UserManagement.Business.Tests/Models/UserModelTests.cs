@@ -11,7 +11,7 @@ namespace UserManagement.Business.Tests.Models
         {
             var faker = new Faker();
 
-            var id = faker.Random.Guid();
+            var id = faker.Random.Number();
             var email = faker.Random.String();
             var firstName = faker.Name.FirstName();
             var lastName = faker.Name.LastName();

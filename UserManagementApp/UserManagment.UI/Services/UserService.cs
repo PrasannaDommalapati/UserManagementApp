@@ -36,7 +36,7 @@ namespace UserManagment.UI.Services
             await HttpClient.PostAsync("api/user", content).ConfigureAwait(false);
         }
 
-        public async Task Delete(Guid id)
+        public async Task Delete(int id)
         {
             await HttpClient
                 .DeleteAsync($"api/user/{id}")

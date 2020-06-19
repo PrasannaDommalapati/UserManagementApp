@@ -27,7 +27,7 @@ namespace UserManagement.Business.Tests.Mappings
             //arrange
             var user = new User
             {
-                Id = Faker.Random.Guid(),
+                Id = Faker.Random.Number(),
                 Email = Faker.Random.String(),
                 FirstName = Faker.Name.FirstName(),
                 LastName = Faker.Name.LastName(),
@@ -36,7 +36,7 @@ namespace UserManagement.Business.Tests.Mappings
                 Organisations = new List<Organisation> {
                     new Organisation
                     {
-                        Id = Guid.NewGuid()
+                        Id = 10
                     } 
                 },
                 Roles = new List<UserRole>

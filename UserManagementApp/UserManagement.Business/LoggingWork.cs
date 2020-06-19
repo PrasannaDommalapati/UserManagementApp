@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using UserManagement.Business.Models;
 using UserManagement.DataAccess;
@@ -9,10 +8,13 @@ using UserManagement.DataAccess.Entity;
 
 namespace UserManagement.Business
 {
-    public class LoggingWork : UnitOfWork, ILoggingWork
+    public class LoggingWork : ILoggingWork
     {
-        public LoggingWork(IDataContext dataContext) : base(dataContext)
+        private UserDataContext _dataContext { get; set; }
+
+        public LoggingWork(UserDataContext dataContext)
         {
+            _dataContext = dataContext;
         }
 
         public Task AddOrganisationToUserAsync()
@@ -20,9 +22,9 @@ namespace UserManagement.Business
             throw new System.NotImplementedException();
         }
 
-        public async Task AddRoleToUserAsync(Guid userId, UserRole role)
+        public async Task AddRoleToUserAsync(int userId, UserRole role)
         {
-            var user = await DataContext
+            var user = await _dataContext
                 .Users
                 .Include("Roles")
                 .FirstOrDefaultAsync(a => a.Id == userId)
@@ -30,12 +32,12 @@ namespace UserManagement.Business
 
             user.Roles.Add(role);
 
-            await DataContext
+            await _dataContext
                 .Users
                 .AddAsync(user)
                 .ConfigureAwait(false);
 
-            await DataContext
+            await _dataContext
                 .UpdateAsync()
                 .ConfigureAwait(false);
         }
@@ -64,28 +66,28 @@ namespace UserManagement.Business
                 }
             };
 
-            await DataContext
+            await _dataContext
                 .Users
                 .AddAsync(user)
                 .ConfigureAwait(false);
 
-            await DataContext
+            await _dataContext
                 .UpdateAsync()
                 .ConfigureAwait(false);
         }
 
-        public async Task DeleteUserAsync(Guid userId)
+        public async Task DeleteUserAsync(int userId)
         {
-            var user = await DataContext
+            var user = await _dataContext
                 .Users
                 .Include(d => d.Roles)
                 .Include(d => d.Organisations)
                 .FirstOrDefaultAsync(d => d.Id == userId)
                 .ConfigureAwait(false);
 
-            DataContext.Users.Remove(user);
+            _dataContext.Users.Remove(user);
 
-            await DataContext
+            await _dataContext
                 .UpdateAsync()
                 .ConfigureAwait(false);
         }
@@ -105,11 +107,11 @@ namespace UserManagement.Business
                 DateModified = DateTime.UtcNow.Date
             };
 
-            DataContext
+            _dataContext
                .Users
                .Update(user);
 
-            await DataContext
+            await _dataContext
                 .UpdateAsync()
                 .ConfigureAwait(false);
         }

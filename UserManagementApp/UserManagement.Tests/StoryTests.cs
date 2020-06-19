@@ -25,7 +25,7 @@ namespace UserManagement.Tests
 
             UserModel = new UserModel
             {
-                Id = Faker.Random.Guid(),
+                Id = Faker.Random.Number(),
                 Email = Faker.Internet.Email(),
                 FirstName = Faker.Name.FirstName(),
                 LastName = Faker.Name.LastName(),
@@ -39,7 +39,7 @@ namespace UserManagement.Tests
             ReportingWork = new Mock<IReportingWork>();
 
             ReportingWork
-                .Setup(r => r.GetUser(It.Is<Guid>(u => u == UserModel.Id)))
+                .Setup(r => r.GetUser(It.Is<int>(u => u == UserModel.Id)))
                 .ReturnsAsync(UserModel);
 
             ReportingWork
@@ -95,7 +95,7 @@ namespace UserManagement.Tests
                 .ConfigureAwait(false);
 
             //assert
-            LoggingWork.Verify(d => d.DeleteUserAsync(It.Is<Guid>(u => u == UserModel.Id)));
+            LoggingWork.Verify(d => d.DeleteUserAsync(It.Is<int>(u => u == UserModel.Id)));
         }
 
     }

@@ -52,7 +52,7 @@ namespace UserManagement.API.Controllers
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<UserModel> Get(Guid id)
+        public async Task<UserModel> Get(int id)
         {
             return await UserStory
                 .GetUser(id)
@@ -69,7 +69,7 @@ namespace UserManagement.API.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task Delete(Guid id)
+        public async Task Delete(int id)
         {
             await UserStory
                 .DeleteUser(id)

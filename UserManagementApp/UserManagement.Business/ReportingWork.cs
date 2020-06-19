@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UserManagement.Business.Models;
@@ -8,20 +7,22 @@ using UserManagement.DataAccess;
 
 namespace UserManagement.Business
 {
-    public class ReportingWork : UnitOfWork, IReportingWork
+    public class ReportingWork : IReportingWork
     {
-        private readonly IMapper Mapper;
+        private readonly IMapper _mapper;
+        private UserDataContext _dataContext { get; set; }
 
-        public ReportingWork(IDataContext dataContext, IMapper mapper) : base(dataContext)
+        public ReportingWork(UserDataContext dataContext, IMapper mapper)
         {
-            Mapper = mapper;
+            _dataContext = dataContext;
+            _mapper = mapper;
         }
 
         public async Task<List<UserModel>> UsersList()
         {
             var users = new List<UserModel>();
 
-            var usersList = await DataContext
+            var usersList = await _dataContext
                 .Users
                 .Include("Roles")
                 .Include("Organisations")
@@ -30,20 +31,20 @@ namespace UserManagement.Business
 
             foreach (var user in usersList)
             {
-                users.Add(Mapper.Map<UserModel>(user));
+                users.Add(_mapper.Map<UserModel>(user));
             }
 
             return users;
         }
 
-        public async Task<UserModel> GetUser(Guid userId)
+        public async Task<UserModel> GetUser(int userId)
         {
-            var users = await DataContext
+            var users = await _dataContext
                 .Users
                 .ToListAsync()
                 .ConfigureAwait(false);
 
-            return Mapper.Map<UserModel>(users.Find(u => u.Id == userId));
+            return _mapper.Map<UserModel>(users.Find(u => u.Id == userId));
         }
     }
 }

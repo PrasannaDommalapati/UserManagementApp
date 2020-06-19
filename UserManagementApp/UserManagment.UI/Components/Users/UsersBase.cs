@@ -39,7 +39,7 @@ namespace UserManagment.UI.Components.Users
             ShowModel = false;
         }
 
-        public async Task DeleteUser(Guid id)
+        public async Task DeleteUser(int id)
         {
             await UserService.Delete(id).ConfigureAwait(false);
         }

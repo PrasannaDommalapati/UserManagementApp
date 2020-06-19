@@ -25,7 +25,7 @@ namespace UserManagement
                 .ConfigureAwait(false);
         }
 
-        public async Task<UserModel> GetUser(Guid userId)
+        public async Task<UserModel> GetUser(int userId)
         {
             return await ReportingWork
                 .GetUser(userId)
@@ -39,7 +39,7 @@ namespace UserManagement
                 .ConfigureAwait(false);
         }
 
-        public async Task DeleteUser(Guid userId)
+        public async Task DeleteUser(int userId)
         {
             await LoggingWork
                 .DeleteUserAsync(userId)
