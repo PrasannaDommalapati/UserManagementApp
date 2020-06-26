@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UserManagement.Business;
+using UserManagement.Business.Extensions;
 using UserManagement.Business.Models;
 
 namespace UserManagement
@@ -34,6 +35,13 @@ namespace UserManagement
 
         public async Task CreateUser(UserModel userModel)
         {
+            var userExisted = await ReportingWork
+                .UserExists(userModel.Email)
+                .ConfigureAwait(false);
+
+            if (userExisted)
+                throw new UserManagementException("User already created in usermanagement");
+
             await LoggingWork
                 .CreateUserAsync(userModel)
                 .ConfigureAwait(false);

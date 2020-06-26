@@ -46,5 +46,13 @@ namespace UserManagement.Business
 
             return _mapper.Map<UserModel>(users.Find(u => u.Id == userId));
         }
+
+        public async Task<bool> UserExists(string email)
+        {
+            return await _dataContext
+                .Users
+                .AnyAsync(u => u.Email == email)
+                .ConfigureAwait(false);
+        }
     }
 }

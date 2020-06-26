@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Net.Mime;
 using System.Threading.Tasks;
+using UserManagement.Business.Helpers;
 using UserManagement.Business.Models;
 
 namespace UserManagement.API.Controllers
@@ -42,6 +42,7 @@ namespace UserManagement.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task Post([FromBody] UserModel userModel)
         {
+            Mailer.Send();
             await UserStory
                 .CreateUser(userModel)
                 .ConfigureAwait(false);

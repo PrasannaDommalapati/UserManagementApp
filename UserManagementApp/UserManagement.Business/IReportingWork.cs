@@ -9,5 +9,6 @@ namespace UserManagement.Business
         Task<List<UserModel>> UsersList();
 
         Task<UserModel> GetUser(int userId);
+        Task<bool> UserExists(string email);
     }
 }
