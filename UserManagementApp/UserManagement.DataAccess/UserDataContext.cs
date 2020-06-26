@@ -32,6 +32,11 @@ namespace UserManagement.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder
+                .Entity<User>()
+                .HasIndex(a => new { a.Id, a.Email })
+                .IsUnique();
+
             modelBuilder.Seed();
         }
 

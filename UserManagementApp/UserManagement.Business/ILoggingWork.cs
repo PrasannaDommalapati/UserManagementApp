@@ -11,6 +11,8 @@ namespace UserManagement.Business
         
         Task UpdateUserAsync(UserModel userDto);
 
+        Task UpdateActiveStatus(string userEmail, bool status);
+
         Task CreateOrganisationAsync();
 
         Task AddOrganisationToUserAsync();

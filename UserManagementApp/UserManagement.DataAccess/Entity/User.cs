@@ -27,6 +27,8 @@ namespace UserManagement.DataAccess.Entity
         [MaxLength(50)]
         public DateTime Birthday { get; set; }
 
+        public bool IsActive { get; set; }
+
         public DateTime DateCreated { get; set; }
      
         public DateTime DateModified { get; set; }

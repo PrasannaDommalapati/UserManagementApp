@@ -6,13 +6,13 @@ using UserManagement.Business.Models;
 
 namespace UserManagement
 {
-    public class Story : IUser
+    public class UserStory : IUserStory
     {
         private readonly IReportingWork ReportingWork;
 
         private readonly ILoggingWork LoggingWork;
 
-        public Story(ILoggingWork loggingWork, IReportingWork reportingWork)
+        public UserStory(ILoggingWork loggingWork, IReportingWork reportingWork)
         {
             LoggingWork = loggingWork.ValidateNotNull();
             ReportingWork = reportingWork.ValidateNotNull();
@@ -43,6 +43,20 @@ namespace UserManagement
         {
             await LoggingWork
                 .DeleteUserAsync(userId)
+                .ConfigureAwait(false);
+        }
+
+        public async Task Update(UserModel userModel)
+        {
+            await LoggingWork
+                .UpdateUserAsync(userModel)
+                .ConfigureAwait(false);
+        }
+
+        public async Task UpdateActiveStatus(string userEmail, bool status)
+        {
+            await LoggingWork
+                .UpdateActiveStatus(userEmail, status)
                 .ConfigureAwait(false);
         }
     }

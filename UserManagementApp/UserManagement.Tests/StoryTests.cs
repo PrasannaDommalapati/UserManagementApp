@@ -14,7 +14,7 @@ namespace UserManagement.Tests
     {
         private readonly Mock<ILoggingWork> LoggingWork;
         private readonly Mock<IReportingWork> ReportingWork;
-        private readonly IUser Story;
+        private readonly IUserStory Story;
         private readonly Faker Faker;
         private readonly UserModel UserModel;
         private readonly List<UserModel> UserModels;
@@ -46,13 +46,13 @@ namespace UserManagement.Tests
                 .Setup(r => r.UsersList())
                 .ReturnsAsync(UserModels);
 
-            Story = new Story(LoggingWork.Object, ReportingWork.Object);
+            Story = new UserStory(LoggingWork.Object, ReportingWork.Object);
         }
 
         [Fact]
         public void Ctor_Null_Args()
         {
-            typeof(Story).ConstructorThrowsException(new object[] {
+            typeof(UserStory).ConstructorThrowsException(new object[] {
                 LoggingWork.Object,
                 ReportingWork.Object});
         }

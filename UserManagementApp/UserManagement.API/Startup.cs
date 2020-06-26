@@ -59,8 +59,8 @@ namespace UserManagement.API
             services.AddDbContext<UserDataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Default")))
             .AddTransient<ILoggingWork, LoggingWork>()
             .AddTransient<IReportingWork, ReportingWork>()
-            .AddTransient<IUser, Story>()
-            .AddTransient<IStory, Organisation>()
+            .AddTransient<IUserStory, UserStory>()
+            .AddTransient<IOrganisationStory, Organisation>()
             .AddSingleton(typeof(IMapper), AutoMapperConfiguration.Create());
         }
 

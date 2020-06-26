@@ -5,7 +5,7 @@ using UserManagement.Business.Models;
 
 namespace UserManagement
 {
-    public class Organisation : IOrganisationStory
+    public class OrganisationStory : IOrganisationStory
     {
         public Task CreateOrganisation(UserModel userModel)
         {

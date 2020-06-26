@@ -14,6 +14,8 @@ namespace UserManagement.Business.Models
 
         public string LastName { get; set; }
 
+        public bool IsActive { get; set; }
+
         public DateTime Birthday { get; set; }
 
         public DateTime DateModified { get; set; }

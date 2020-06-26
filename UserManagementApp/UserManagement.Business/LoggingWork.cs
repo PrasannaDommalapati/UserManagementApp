@@ -55,6 +55,7 @@ namespace UserManagement.Business
                 LastName = userDto.LastName,
                 Email = userDto.Email,
                 Birthday = userDto.Birthday,
+                IsActive = false,
                 DateCreated = DateTime.UtcNow.Date,
                 DateModified = DateTime.UtcNow.Date,
                 Roles = new List<UserRole>
@@ -103,6 +104,7 @@ namespace UserManagement.Business
                 Birthday = userDto.Birthday,
                 Organisations = userDto.Organisations,
                 Roles = userDto.Roles,
+                IsActive = userDto.IsActive,
                 DateCreated = DateTime.UtcNow.Date,
                 DateModified = DateTime.UtcNow.Date
             };
@@ -110,6 +112,22 @@ namespace UserManagement.Business
             _dataContext
                .Users
                .Update(user);
+
+            await _dataContext
+                .UpdateAsync()
+                .ConfigureAwait(false);
+        }
+
+        public async Task UpdateActiveStatus(string userEmail, bool status)
+        {
+            var user = await _dataContext
+                .Users
+                .FirstOrDefaultAsync(u => u.Email == userEmail)
+                .ConfigureAwait(false);
+
+            user.IsActive = status;
+
+            _dataContext.Users.Attach(user).State = EntityState.Modified;
 
             await _dataContext
                 .UpdateAsync()

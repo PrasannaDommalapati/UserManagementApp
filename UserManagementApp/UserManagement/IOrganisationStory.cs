@@ -4,7 +4,7 @@ using UserManagement.Business.Models;
 
 namespace UserManagement
 {
-    public interface IStory
+    public interface IOrganisationStory
     {
         Task<List<OrganisationModel>> Organisations();
 

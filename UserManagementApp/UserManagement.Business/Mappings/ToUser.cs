@@ -18,6 +18,7 @@ namespace UserManagement.Business.Mappings
                 .ForMember(a => a.Birthday, d => d.MapFrom(s => s.Birthday))
                 .ForMember(a => a.Roles, d => d.MapFrom(s => s.Roles))
                 .ForMember(a => a.Organisations, d => d.MapFrom(s => s.Organisations))
+                .ForMember(a => a.IsActive, d => d.MapFrom(s => s.IsActive))
                 .ForAllOtherMembers(opt => opt.Ignore());
         }
     }

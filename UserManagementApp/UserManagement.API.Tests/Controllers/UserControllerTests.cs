@@ -11,14 +11,14 @@ namespace UserManagement.API.Tests.Controllers
     public class UserControllerTests
     {
         private readonly Faker Faker;
-        private readonly Mock<IUser> Story;
+        private readonly Mock<IUserStory> Story;
         private readonly UserController Controller;
         private readonly List<UserModel> UserList;
 
         public UserControllerTests()
         {
             Faker = new Faker();
-            Story = new Mock<IUser>();
+            Story = new Mock<IUserStory>();
             Controller = new UserController(Story.Object);
 
             UserList = new List<UserModel>

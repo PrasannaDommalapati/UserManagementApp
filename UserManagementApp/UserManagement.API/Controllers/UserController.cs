@@ -12,9 +12,9 @@ namespace UserManagement.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUser UserStory;
+        private readonly IUserStory UserStory;
 
-        public UserController(IUser userStory)
+        public UserController(IUserStory userStory)
         {
             UserStory = userStory;
         }
@@ -63,6 +63,15 @@ namespace UserManagement.API.Controllers
         [HttpPut("{userId}")]
         public void Put(int userId, [FromBody] UserModel userModel)
         {
+            // Method intentionally left empty.
+        }
+
+        [HttpPut]
+        public async Task UpdateActiveStatus(string email, bool status)
+        {
+            await UserStory
+                .UpdateActiveStatus(email, status)
+                .ConfigureAwait(false);
         }
 
         // DELETE: api/ApiWithActions/5
