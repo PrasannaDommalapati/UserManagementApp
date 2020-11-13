@@ -14,6 +14,7 @@ namespace UserManagement.Business.Tests
         {
             var options = new DbContextOptionsBuilder<UserDataContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
                 .Options;
             var userDataContext = new UserDataContext(options);
 
@@ -31,7 +32,6 @@ namespace UserManagement.Business.Tests
             {
                 new Organisation
                 {
-                    Id = faker.Random.Number(),
                     Address = new Address(),
                     Licence = faker.Random.String(),
                     OrganisationName = faker.Company.CompanyName(),
@@ -40,7 +40,6 @@ namespace UserManagement.Business.Tests
                 },
                 new Organisation
                 {
-                    Id = faker.Random.Number(),
                     Address = new Address(),
                     Licence = faker.Random.String(),
                     OrganisationName = faker.Company.CompanyName(),
@@ -85,6 +84,8 @@ namespace UserManagement.Business.Tests
                     TownOrCity = faker.Address.City()
                 }
             };
+
+            context.Addresses.AddRange(addressList);
 
             return context;
         }

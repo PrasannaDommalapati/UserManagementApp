@@ -1,6 +1,7 @@
 using Bogus;
 using Moq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UserManagement.Business;
 using UserManagement.Business.Helpers;
@@ -80,7 +81,7 @@ namespace UserManagement.Tests
             var users = await Story.UsersList().ConfigureAwait(false);
 
             Assert.Single(users);
-            Assert.Equal(_userModel.LastName, users[0].LastName);
+            Assert.Equal(_userModel.LastName, users.First().LastName);
         }
 
         [Fact]

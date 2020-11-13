@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.Business.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.DataAccess.Tests", "UserManagement.DataAccess.Tests\UserManagement.DataAccess.Tests.csproj", "{6DAF4000-A210-42F0-9850-BB9B08C1D780}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.UI.Tests", "UserManagement.UI.Tests\UserManagement.UI.Tests.csproj", "{AFACAD29-2B1A-4881-8BAF-0BA59E8C05B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.UI.Tests", "UserManagement.UI.Tests\UserManagement.UI.Tests.csproj", "{AFACAD29-2B1A-4881-8BAF-0BA59E8C05B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserManagement.UI", "UserManagement.UI\UserManagement.UI.csproj", "{83C83705-0BC6-4750-945E-1CFD8112E5F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{AFACAD29-2B1A-4881-8BAF-0BA59E8C05B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFACAD29-2B1A-4881-8BAF-0BA59E8C05B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFACAD29-2B1A-4881-8BAF-0BA59E8C05B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83C83705-0BC6-4750-945E-1CFD8112E5F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83C83705-0BC6-4750-945E-1CFD8112E5F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83C83705-0BC6-4750-945E-1CFD8112E5F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83C83705-0BC6-4750-945E-1CFD8112E5F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

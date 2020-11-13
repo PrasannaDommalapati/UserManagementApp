@@ -14,6 +14,7 @@ namespace UserManagement.Business.Tests
         {
             var options = new DbContextOptionsBuilder<UserDataContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
                 .Options;
             _userDataContext = new UserDataContext(options);
 
