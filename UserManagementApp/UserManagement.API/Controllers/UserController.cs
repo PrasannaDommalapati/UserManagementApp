@@ -42,7 +42,6 @@ namespace UserManagement.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task Post([FromBody] UserModel userModel)
         {
-            Mailer.Send();
             await UserStory
                 .CreateUser(userModel)
                 .ConfigureAwait(false);

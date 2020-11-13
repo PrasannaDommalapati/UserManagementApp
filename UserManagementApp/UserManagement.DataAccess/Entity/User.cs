@@ -29,6 +29,10 @@ namespace UserManagement.DataAccess.Entity
 
         public bool IsActive { get; set; }
 
+        public string SecurityCode { get; set; }
+
+        public DateTime CodeExpiry { get; set; }
+
         public DateTime DateCreated { get; set; }
      
         public DateTime DateModified { get; set; }

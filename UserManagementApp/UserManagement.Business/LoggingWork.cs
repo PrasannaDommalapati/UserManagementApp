@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
+using UserManagement.Business.Helpers;
 using UserManagement.Business.Models;
 using UserManagement.DataAccess;
 using UserManagement.DataAccess.Entity;
@@ -10,11 +13,11 @@ namespace UserManagement.Business
 {
     public class LoggingWork : ILoggingWork
     {
-        private UserDataContext _dataContext { get; set; }
+        private UserDataContext _dataContext { get; }
 
         public LoggingWork(UserDataContext dataContext)
         {
-            _dataContext = dataContext;
+            _dataContext = dataContext.ValidateNotNull();
         }
 
         public Task AddOrganisationToUserAsync()
@@ -49,6 +52,9 @@ namespace UserManagement.Business
 
         public async Task CreateUserAsync(UserModel userDto)
         {
+
+            var random = new Random().Next(1000, 9999).ToString();
+
             var user = new User
             {
                 FirstName = userDto.FirstName,
@@ -56,6 +62,8 @@ namespace UserManagement.Business
                 Email = userDto.Email,
                 Birthday = userDto.Birthday,
                 IsActive = false,
+                SecurityCode = GetHash(SHA256.Create(), random),
+                CodeExpiry = DateTime.UtcNow.AddMinutes(30),
                 DateCreated = DateTime.UtcNow.Date,
                 DateModified = DateTime.UtcNow.Date,
                 Roles = new List<UserRole>
@@ -75,8 +83,30 @@ namespace UserManagement.Business
             await _dataContext
                 .UpdateAsync()
                 .ConfigureAwait(false);
+
+            Mailer.Send(userDto.Email, random);
         }
 
+        private static string GetHash(HashAlgorithm hashAlgorithm, string input)
+        {
+
+            // Convert the input string to a byte array and compute the hash.
+            var data = hashAlgorithm.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            // Create a new Stringbuilder to collect the bytes
+            // and create a string.
+            var sBuilder = new StringBuilder();
+
+            // Loop through each byte of the hashed data
+            // and format each one as a hexadecimal string.
+            foreach (var t in data)
+            {
+                sBuilder.Append(t.ToString("x2"));
+            }
+
+            // Return the hexadecimal string.
+            return sBuilder.ToString();
+        }
         public async Task DeleteUserAsync(int userId)
         {
             var user = await _dataContext
@@ -104,7 +134,6 @@ namespace UserManagement.Business
                 Birthday = userDto.Birthday,
                 Organisations = userDto.Organisations,
                 Roles = userDto.Roles,
-                IsActive = userDto.IsActive,
                 DateCreated = DateTime.UtcNow.Date,
                 DateModified = DateTime.UtcNow.Date
             };

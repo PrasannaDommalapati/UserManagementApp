@@ -1,6 +1,5 @@
 using Bogus;
 using Moq;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UserManagement.Business;
@@ -12,49 +11,49 @@ namespace UserManagement.Tests
 {
     public class StoryTests
     {
-        private readonly Mock<ILoggingWork> LoggingWork;
-        private readonly Mock<IReportingWork> ReportingWork;
+        private readonly Mock<ILoggingWork> _loggingWork;
+        private readonly Mock<IReportingWork> _reportingWork;
         private readonly IUserStory Story;
-        private readonly Faker Faker;
-        private readonly UserModel UserModel;
-        private readonly List<UserModel> UserModels;
+        private readonly Faker _faker;
+        private readonly UserModel _userModel;
+        private readonly List<UserModel> _userModelList;
 
         public StoryTests()
         {
-            Faker = new Faker();
+            _faker = new Faker();
 
-            UserModel = new UserModel
+            _userModel = new UserModel
             {
-                Id = Faker.Random.Number(),
-                Email = Faker.Internet.Email(),
-                FirstName = Faker.Name.FirstName(),
-                LastName = Faker.Name.LastName(),
+                Id = _faker.Random.Number(),
+                Email = _faker.Internet.Email(),
+                FirstName = _faker.Name.FirstName(),
+                LastName = _faker.Name.LastName(),
             };
-            UserModels = new List<UserModel>
+            _userModelList = new List<UserModel>
             {
-                UserModel
+                _userModel
             };
 
-            LoggingWork = new Mock<ILoggingWork>();
-            ReportingWork = new Mock<IReportingWork>();
+            _loggingWork = new Mock<ILoggingWork>();
+            _reportingWork = new Mock<IReportingWork>();
 
-            ReportingWork
-                .Setup(r => r.GetUser(It.Is<int>(u => u == UserModel.Id)))
-                .ReturnsAsync(UserModel);
+            _reportingWork
+                .Setup(r => r.GetUser(It.Is<int>(u => u == _userModel.Id)))
+                .ReturnsAsync(_userModel);
 
-            ReportingWork
+            _reportingWork
                 .Setup(r => r.UsersList())
-                .ReturnsAsync(UserModels);
+                .ReturnsAsync(_userModelList);
 
-            Story = new UserStory(LoggingWork.Object, ReportingWork.Object);
+            Story = new UserStory(_loggingWork.Object, _reportingWork.Object);
         }
 
         [Fact]
         public void Ctor_Null_Args()
         {
             typeof(UserStory).ConstructorThrowsException(new object[] {
-                LoggingWork.Object,
-                ReportingWork.Object});
+                _loggingWork.Object,
+                _reportingWork.Object});
         }
 
         [Fact]
@@ -62,19 +61,19 @@ namespace UserManagement.Tests
         {
             //act
             await Story
-                .CreateUser(UserModel)
+                .CreateUser(_userModel)
                 .ConfigureAwait(false);
 
             //assert
-            LoggingWork.Verify(d => d.CreateUserAsync(It.Is<UserModel>(u => u.Email == UserModel.Email)));
+            _loggingWork.Verify(d => d.CreateUserAsync(It.Is<UserModel>(u => u.Email == _userModel.Email)));
         }
 
         [Fact]
         public async Task GetUser_Success()
         {
-            var user = await Story.GetUser(UserModel.Id).ConfigureAwait(false);
+            var user = await Story.GetUser(_userModel.Id).ConfigureAwait(false);
 
-            Assert.Equal(UserModel.Id, user.Id);
+            Assert.Equal(_userModel.Id, user.Id);
         }
 
         [Fact]
@@ -83,7 +82,7 @@ namespace UserManagement.Tests
             var users = await Story.UsersList().ConfigureAwait(false);
 
             Assert.Single(users);
-            Assert.Equal(UserModel.LastName, users[0].LastName);
+            Assert.Equal(_userModel.LastName, users[0].LastName);
         }
 
         [Fact]
@@ -91,11 +90,11 @@ namespace UserManagement.Tests
         {
             //act
             await Story
-                .DeleteUser(UserModel.Id)
+                .DeleteUser(_userModel.Id)
                 .ConfigureAwait(false);
 
             //assert
-            LoggingWork.Verify(d => d.DeleteUserAsync(It.Is<int>(u => u == UserModel.Id)));
+            _loggingWork.Verify(d => d.DeleteUserAsync(It.Is<int>(u => u == _userModel.Id)));
         }
 
     }

@@ -1,24 +1,28 @@
 ﻿using System;
+using System.Net;
 using System.Net.Mail;
+using UserManagement.Business.Extensions;
 
 namespace UserManagement.Business.Helpers
 {
     public static class Mailer
     {
-        public static void Send()
+        public static void Send(string toAddress, string securityCode)
         {
-            string to = "dommalapati.chowdary@gmail.com";
-            string from = "dpchowdaryd@gmail.com";
-            MailMessage message = new MailMessage(from, to)
+            const string fromAddress = "dpchowdaryd@gmail.com";
+
+            var basicCredential = new NetworkCredential(fromAddress, "Prasanna1405");
+            var message = new MailMessage(fromAddress, toAddress)
             {
-                Subject = "Using the new SMTP client.",
-                Body = "Using this new feature, you can send an email message from an application very easily."
+                Subject = "UserManagement Code",
+                Body = securityCode
             };
-            SmtpClient client = new SmtpClient("smtp.gmail.com")
+
+            var client = new SmtpClient("smtp.gmail.com")
             {
-                // Credentials are necessary if the server requires the client
-                // to authenticate before it will send email on the client's behalf.
                 UseDefaultCredentials = true,
+                Credentials = basicCredential,
+                EnableSsl = true,
                 Port = 587
             };
 
@@ -28,8 +32,7 @@ namespace UserManagement.Business.Helpers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception caught in CreateTestMessage2(): {0}",
-                    ex.ToString());
+                throw new UserManagementException($"Unable to send an email :(", ex);
             }
         }
     }
