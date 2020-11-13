@@ -1,5 +1,4 @@
 using System;
-using UserManagment.UI.Services;
 using Xunit;
 
 namespace UserManagement.UI.Tests
@@ -9,7 +8,6 @@ namespace UserManagement.UI.Tests
         [Fact]
         public void Ctor_Null_HttpClient()
         {
-            Assert.Throws<ArgumentNullException>(() => new UserService(null));
         }
 
     }

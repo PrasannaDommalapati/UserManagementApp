@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.API", "UserM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.Tests", "UserManagement.Tests\UserManagement.Tests.csproj", "{F2DDC2ED-52D4-4B84-9FC9-C6839A92147F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagment.UI", "UserManagment.UI\UserManagment.UI.csproj", "{5D2792D3-206D-4857-BA19-1834CB293E70}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.API.Tests", "UserManagement.API.Tests\UserManagement.API.Tests.csproj", "{48B70ECB-CA28-4F1D-A505-5AD9EBFEE538}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.Business.Tests", "UserManagement.Business.Tests\UserManagement.Business.Tests.csproj", "{2C79993B-8CB9-4BF4-9568-2ED560A6CC22}"
@@ -51,10 +49,6 @@ Global
 		{F2DDC2ED-52D4-4B84-9FC9-C6839A92147F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2DDC2ED-52D4-4B84-9FC9-C6839A92147F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2DDC2ED-52D4-4B84-9FC9-C6839A92147F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5D2792D3-206D-4857-BA19-1834CB293E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D2792D3-206D-4857-BA19-1834CB293E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D2792D3-206D-4857-BA19-1834CB293E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D2792D3-206D-4857-BA19-1834CB293E70}.Release|Any CPU.Build.0 = Release|Any CPU
 		{48B70ECB-CA28-4F1D-A505-5AD9EBFEE538}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{48B70ECB-CA28-4F1D-A505-5AD9EBFEE538}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48B70ECB-CA28-4F1D-A505-5AD9EBFEE538}.Release|Any CPU.ActiveCfg = Release|Any CPU
