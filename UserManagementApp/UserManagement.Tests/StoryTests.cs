@@ -14,22 +14,20 @@ namespace UserManagement.Tests
         private readonly Mock<ILoggingWork> _loggingWork;
         private readonly Mock<IReportingWork> _reportingWork;
         private readonly IUserStory Story;
-        private readonly Faker _faker;
         private readonly UserModel _userModel;
-        private readonly List<UserModel> _userModelList;
 
         public StoryTests()
         {
-            _faker = new Faker();
+            var faker = new Faker();
 
             _userModel = new UserModel
             {
-                Id = _faker.Random.Number(),
-                Email = _faker.Internet.Email(),
-                FirstName = _faker.Name.FirstName(),
-                LastName = _faker.Name.LastName(),
+                Id = faker.Random.Number(),
+                Email = faker.Internet.Email(),
+                FirstName = faker.Name.FirstName(),
+                LastName = faker.Name.LastName(),
             };
-            _userModelList = new List<UserModel>
+            var userModelList = new List<UserModel>
             {
                 _userModel
             };
@@ -43,7 +41,7 @@ namespace UserManagement.Tests
 
             _reportingWork
                 .Setup(r => r.UsersList())
-                .ReturnsAsync(_userModelList);
+                .ReturnsAsync(userModelList);
 
             Story = new UserStory(_loggingWork.Object, _reportingWork.Object);
         }
