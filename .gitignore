@@ -33,3 +33,7 @@ bld/
 
 *.pdb
 *.dll
+
+.idea
+/UserManagementApp/UserManagement/bin/
+*.user
