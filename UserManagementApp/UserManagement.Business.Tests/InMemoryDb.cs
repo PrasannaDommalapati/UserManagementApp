@@ -10,6 +10,7 @@ namespace UserManagement.Business.Tests
 {
     public static class InMemoryDb
     {
+
         public static UserDataContext SetUp()
         {
             var options = new DbContextOptionsBuilder<UserDataContext>()
@@ -86,6 +87,26 @@ namespace UserManagement.Business.Tests
             };
 
             context.Addresses.AddRange(addressList);
+
+            var users = new List<User>
+            {
+                new User
+                {
+                    IsActive = false,
+                    FirstName = "Tests",
+                    Email = "test@test.com",
+                    LastName = "Tests"
+                },
+                new User
+                {
+                    IsActive = true,
+                    FirstName = "Tests1",
+                    Email = "test@tester.com",
+                    LastName = "Tests1"
+                }
+            };
+
+            context.Users.AddRange(users);
 
             return context;
         }

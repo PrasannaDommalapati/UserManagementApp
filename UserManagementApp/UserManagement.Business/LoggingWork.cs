@@ -151,6 +151,7 @@ namespace UserManagement.Business
         {
             var user = await _dataContext
                 .Users
+                .AsNoTracking()
                 .FirstOrDefaultAsync(u => u.Email == userEmail)
                 .ConfigureAwait(false);
 
