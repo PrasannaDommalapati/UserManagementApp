@@ -34,7 +34,7 @@ jobs:
       run: dotnet publish -c Release -o ./Artifacts
       working-directory: UserManagementApp/
       
-    - name: Upload artifact
+    - name: Upload AArtifact
       continue-on-error: false
       uses: actions/upload-artifact@v1.0.0
       with: 
