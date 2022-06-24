@@ -17,7 +17,7 @@ namespace UserManagement.Business.Tests
 
         public LoggingWorkTests()
         {
-            SetupInMemoryDb();
+            //SetupInMemoryDb();
             _loggingWork = new LoggingWork(_userDataContext);
         }
 
