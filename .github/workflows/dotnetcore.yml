@@ -36,7 +36,7 @@ jobs:
     - name: Code Coverage Summary Report
       uses: irongut/CodeCoverageSummary@v1.2.0
       with:
-        filename:  /home/runner/work/UserManagementApp/UserManagementApp/UserManagementApp/coverage/*/coverage.cobertura.xml
+        filename:  /home/runner/work/UserManagementApp/UserManagementApp/UserManagementApp/coverage/**/coverage.cobertura.xml
         badge: true
         fail_below_min: true
         format: markdown
