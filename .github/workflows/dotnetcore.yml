@@ -22,13 +22,16 @@ jobs:
     - name: Build with dotnet
       continue-on-error: false
       run: dotnet build --configuration Release
+      working-directory: UserManagementApp/
 
     - name: Test with dotnet
       continue-on-error: false
       run: dotnet test --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+      working-directory: UserManagementApp/
       
-    - name: Copy Coverage To Predictable Location
-      run: cp coverage/**/coverage.cobertura.xml coverage.cobertura.xml
+#     - name: Copy Coverage To Predictable Location
+#       run: cp coverage/**/coverage.cobertura.xml coverage.cobertura.xml
+#       working-directory: UserManagementApp/
       
     - name: Code Coverage Summary Report
       uses: irongut/CodeCoverageSummary@v1.2.0
