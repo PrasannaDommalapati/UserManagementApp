@@ -17,7 +17,7 @@ namespace UserManagement.Business.Tests
 
         public LoggingWorkTests()
         {
-            //SetupInMemoryDb();
+            SetupInMemoryDb();
             _loggingWork = new LoggingWork(_userDataContext);
         }
 
@@ -42,7 +42,7 @@ namespace UserManagement.Business.Tests
         private void SetupInMemoryDb()
         {
             var dbContextOptions = new DbContextOptionsBuilder<UserDataContext>()
-                .UseInMemoryDatabase(databaseName: "Test_UserData")
+                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
                 .Options;
 
